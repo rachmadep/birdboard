@@ -16,16 +16,24 @@ class ProjectsTest extends TestCase
     {
         $this->withoutExceptionHandling();
 
-        $attributes = [
-            'title' => $this->faker->sentence,
-            'description' => $this->faker->paragraph
-        ];
+        $attributes = factory(Project::class)->raw();
 
         $this->post('/projects', $attributes)->assertRedirect('/projects');
 
         $this->assertDatabaseHas('projects', $attributes);
 
         $this->get('/projects')->assertSee($attributes['title']);
+    }
+
+    /** @test  */
+    public function a_user_can_view_a_project()
+    {
+        $this->withoutExceptionHandling();
+        $project = factory(Project::class)->create();
+        $this->get($project->path())
+            ->assertSee($project->title)
+            ->assertSee($project->description);
+
     }
 
     /** @test  */
