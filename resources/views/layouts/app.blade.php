@@ -15,14 +15,14 @@
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 </head>
-<body class="bg-gray-100 h-screen antialiased leading-none">
+<body class="bg-gray-100">
     <div id="app">
-        <nav class="bg-white shadow mb-8 py-6">
-            <div class="container mx-auto px-6 md:px-0">
+        <nav class="bg-white section shadow mb-8 py-2">
+            <div class="mx-auto md:px-0">
                 <div class="flex items-center justify-center">
                     <div class="mr-6">
                         <a href="{{ url('/') }}" class="text-lg font-semibold no-underline">
-                            {{ config('app.name', 'Laravel') }}
+                            <img src="/images/logo.svg" alt="Birdboard" class="relative" style="top: 2px">
                         </a>
                     </div>
                     <div class="flex-1 text-right">
@@ -48,7 +48,7 @@
         </nav>
 
         <div class="section">
-            <main class="container mx-auto">
+            <main class="mx-auto">
                 @yield('content')
             </main>
         </div>

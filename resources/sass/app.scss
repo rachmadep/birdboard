@@ -1,0 +1,16 @@
+@tailwind base;
+
+@import 'components/button';
+
+body,
+button {
+    @apply .text-base;
+}
+
+.section {
+    @apply .px-8;
+}
+
+@tailwind components;
+
+@tailwind utilities;
