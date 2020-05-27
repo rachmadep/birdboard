@@ -4,6 +4,8 @@
 <header class="flex item-end mb-3 py-4">
     <div class="flex justify-between w-full">
         <p class="text-gray-600 text-lg"><a href="/projects">My Projects</a> / {{ $project->title }}</p>
+
+        <a href="{{ $project->path().'/edit' }}" class="button">Edit Project</a>
     </div>
 </header>
 

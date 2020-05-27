@@ -22,6 +22,7 @@ class ProjectsTest extends TestCase
         $this->get('/projects')->assertRedirect('login');
         $this->get('/projects/create')->assertRedirect('login');
         $this->get($project->path())->assertRedirect('login');
+        $this->get($project->path().'/edit')->assertRedirect('login');
         $this->post('/projects', $project->toArray())->assertRedirect('login');
     }
 
@@ -57,8 +58,10 @@ class ProjectsTest extends TestCase
         $project = ProjectFactory::create();
 
         $this->actingAs($project->owner)
-            ->patch($project->path(), $attributes = ['notes' => 'Notes Changed'])
+            ->patch($project->path(), $attributes = ['title' => 'change', 'description' => 'change', 'notes' => 'Notes Changed'])
             ->assertRedirect($project->path());
+
+        $this->get($project->path().'/edit')->assertOk();
 
         $this->assertDatabaseHas('projects', $attributes);
     }
