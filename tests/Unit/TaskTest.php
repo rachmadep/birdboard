@@ -16,12 +16,24 @@ class TaskTest extends TestCase
         $task = factory('App\Task')->create();
         $this->assertInstanceOf('App\Project', $task->project);
     }
-    
+
     /** @test */
     public function it_has_a_path()
     {
         $task = factory('App\Task')->create();
 
         $this->assertEquals("/projects/{$task->project->id}/tasks/{$task->id}", $task->path());
+    }
+
+    /** @test */
+    public function it_can_be_completed()
+    {
+        $task = factory('App\Task')->create();
+
+        $this->assertFalse($task->completed);
+
+        $task->complete();
+
+        $this->assertTrue($task->fresh()->completed);
     }
 }
