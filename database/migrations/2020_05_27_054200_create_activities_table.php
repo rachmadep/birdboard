@@ -18,6 +18,9 @@ class CreateActivitiesTable extends Migration
             $table->foreignId('project_id')
                 ->constrained()
                 ->onDelete('cascade');
+            $table->foreignId('user_id')
+                ->constrained()
+                ->onDelete('cascade');
             $table->nullableMorphs('subject');
             $table->string('description');
             $table->text('changes')->nullable();
