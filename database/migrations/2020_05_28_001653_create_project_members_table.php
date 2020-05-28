@@ -24,8 +24,6 @@ class CreateProjectMembersTable extends Migration
             $table->timestamps();
 
             $table->index(['project_id', 'user_id']);
-            $table->unique('project_id', 'user_id');
-
         });
     }
 
