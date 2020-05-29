@@ -18,9 +18,18 @@ class InvitationTest extends TestCase
         $project = ProjectFactory::create();
         $user = factory(User::class)->create();
 
-        $this->actingAs($user)
-            ->post($project->path().'/invitations', ['email' => 'test@example.com'])
-            ->assertStatus(403);
+        $assertInvitationForbiden = function () use ($user, $project)
+        {
+            $this->actingAs($user)
+                ->post($project->path().'/invitations')
+                ->assertStatus(403);
+        };
+
+        $assertInvitationForbiden();
+
+        $project->invite($user);
+
+        $assertInvitationForbiden();
     }
 
     /** @test */
@@ -50,7 +59,7 @@ class InvitationTest extends TestCase
             ])
             ->assertSessionHasErrors([
                 'email' => 'The user you are inviting must have a Bireboard account.'
-            ]);
+            ], null, 'invitations');
     }
 
     /** @test */
