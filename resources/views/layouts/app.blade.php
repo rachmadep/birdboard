@@ -33,14 +33,17 @@
                             </svg>
                         </a>
                     </div>
-                    <div class="flex-1 text-right">
+                    <div class="flex text-right">
                         @guest
                             <a class="no-underline text-default hover:underline text-sm p-3" href="{{ route('login') }}">{{ __('Login') }}</a>
                             @if (Route::has('register'))
                                 <a class="no-underline text-default hover:underline text-sm p-3" href="{{ route('register') }}">{{ __('Register') }}</a>
                             @endif
                         @else
-                            <span class="text-sm text-default pr-4">{{ Auth::user()->name }}</span>
+                            <span class="text-sm item-end text-default p-2">
+                                <img width="35" class="rounded-full inline mr-3" src="{{ gravatar_url(auth()->user()->email) }}">
+                                {{ Auth::user()->name }}
+                            </span>
 
                             <a href="{{ route('logout') }}"
                                class="no-underline text-default hover:underline text-sm p-3"
