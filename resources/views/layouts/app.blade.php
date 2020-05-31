@@ -15,7 +15,7 @@
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 </head>
-<body class="theme-dark bg-page">
+<body class="theme-light bg-page">
     <div id="app">
         <nav class="bg-header section">
             <div class="mx-auto md:px-0">
@@ -40,6 +40,8 @@
                                 <a class="no-underline text-default hover:underline text-sm p-3" href="{{ route('register') }}">{{ __('Register') }}</a>
                             @endif
                         @else
+                            <theme-switcher></theme-switcher>
+                            
                             <span class="text-sm item-end text-default p-2">
                                 <img width="35" class="rounded-full inline mr-3" src="{{ gravatar_url(auth()->user()->email) }}">
                                 {{ Auth::user()->name }}
