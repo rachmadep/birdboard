@@ -1,12 +1,12 @@
 @csrf
 
 <div class="field mb-6">
-    <label class="label text-sm mb-2 block" for="title">Title</label>
+    <label class="label text-default text-sm mb-2 block" for="title">Title</label>
 
     <div class="control">
         <input
                 type="text"
-                class="input bg-transparent border border-gray-300 rounded p-2 text-xs w-full"
+                class="input bg-transparent text-default border border-muted-light rounded p-2 text-xs w-full"
                 name="title"
                 placeholder="My next awesome project"
                 required
@@ -15,13 +15,13 @@
 </div>
 
 <div class="field mb-6">
-    <label class="label text-sm mb-2 block" for="description">Description</label>
+    <label class="label text-sm text-default mb-2 block" for="description">Description</label>
 
     <div class="control">
             <textarea
                 name="description"
                 rows="10"
-                class="textarea bg-transparent border border-gray-300 rounded p-2 text-xs w-full"
+                class="textarea bg-transparent text-default border border-muted-light rounded p-2 text-xs w-full"
                 placeholder="I should start learning piano."
                 required>{{ $project->description }}</textarea>
     </div>
@@ -31,7 +31,7 @@
     <div class="control">
         <button type="submit" class="button is-link mr-2">{{ $buttonText }}</button>
 
-        <a href="{{ $project->path() }}">Cancel</a>
+        <a href="{{ $project->path() }}" class="text-default no-underline hover:underline">Cancel</a>
     </div>
 </div>
 @include ('errors')

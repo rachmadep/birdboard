@@ -1,5 +1,7 @@
 @tailwind base;
 
+@import 'themes/light';
+@import 'themes/dark';
 @import 'components/button';
 @import 'components/card';
 

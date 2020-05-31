@@ -11,12 +11,24 @@ module.exports = {
       lg: '1024px',
       xl: '1280px',
     },
+    backgroundColors: {
+      page: 'var(--page-background-color)',
+      card: 'var(--card-background-color)',
+      button: 'var(--button-background-color)',
+      header: 'var(--header-background-color)',
+    },
     colors: {
       transparent: 'transparent',
       current: 'currentColor',
 
       black: '#000',
       white: '#fff',
+
+      default: 'var(--text-default-color)',
+      accent: 'var(--text-accent-color)',
+      'accent-light': 'var(--text-accent-light-color)',
+      muted: 'var(--text-muted-color)',
+      'muted-light': 'var(--text-muted-light-color)',
 
       gray: {
         100: '#f7fafc',
@@ -150,7 +162,7 @@ module.exports = {
       '56': '14rem',
       '64': '16rem',
     },
-    backgroundColor: theme => theme('colors'),
+    backgroundColor: theme => theme('backgroundColors'),
     backgroundOpacity: theme => theme('opacity'),
     backgroundPosition: {
       bottom: 'bottom',
