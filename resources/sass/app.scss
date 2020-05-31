@@ -4,6 +4,7 @@
 @import 'themes/dark';
 @import 'components/button';
 @import 'components/card';
+@import 'components/dropdown';
 
 body,
 button {
@@ -12,6 +13,10 @@ button {
 
 .section {
     @apply .px-8;
+}
+
+.vm--modal {
+    @apply .bg-card;
 }
 
 @tailwind components;

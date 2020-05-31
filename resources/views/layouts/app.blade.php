@@ -20,8 +20,8 @@
         <nav class="bg-header section">
             <div class="mx-auto md:px-0">
                 <div class="flex items-center justify-between py-1">
-                    <div class="mr-6">
-                        <a href="{{ url('/projects') }}" class="text-lg font-semibold no-underline">
+                    <h1>
+                        <a class="navbar-brand" href="{{ url('/projects') }}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="291" height="45" viewBox="0 0 291 45" class="text-default relative" style="top: 2px">
                                 <g fill="none" fill-rule="evenodd">
                                     <g class="fill-current">
@@ -32,29 +32,40 @@
                                 </g>
                             </svg>
                         </a>
-                    </div>
-                    <div class="flex text-right">
-                        @guest
-                            <a class="no-underline text-default hover:underline text-sm p-3" href="{{ route('login') }}">{{ __('Login') }}</a>
-                            @if (Route::has('register'))
-                                <a class="no-underline text-default hover:underline text-sm p-3" href="{{ route('register') }}">{{ __('Register') }}</a>
-                            @endif
-                        @else
-                            <theme-switcher></theme-switcher>
-                            
-                            <span class="text-sm item-end text-default p-2">
-                                <img width="35" class="rounded-full inline mr-3" src="{{ gravatar_url(auth()->user()->email) }}">
-                                {{ Auth::user()->name }}
-                            </span>
+                    </h1>
+                    <div>
+                        <div class="flex items-center ml-auto">
+                            @guest
+                                <a class="text-accent mr-4 no-underline hover:underline" href="{{ route('login') }}">{{ __('Login') }}</a>
 
-                            <a href="{{ route('logout') }}"
-                               class="no-underline text-default hover:underline text-sm p-3"
-                               onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
-                                {{ csrf_field() }}
-                            </form>
-                        @endguest
+                                @if (Route::has('register'))
+                                    <a class="text-accent no-underline hover:underline" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                @endif
+                            @else
+                                <theme-switcher></theme-switcher>
+
+                                <dropdown align="right" width="200px">
+                                    <template v-slot:trigger>
+                                        <button
+                                            class="flex items-center text-default no-underline text-sm focus:outline-none"
+                                            v-pre
+                                        >
+                                            <img width="35"
+                                                 class="rounded-full mr-3"
+                                                 src="{{ gravatar_url(auth()->user()->email) }}">
+
+                                            {{ auth()->user()->name }}
+                                        </button>
+                                    </template>
+
+                                    <form id="logout-form" method="POST" action="/logout">
+                                        @csrf
+
+                                        <button type="submit" class="dropdown-menu-link w-full text-left">Logout</button>
+                                    </form>
+                                </dropdown>
+                            @endguest
+                        </div>
                     </div>
                 </div>
             </div>
